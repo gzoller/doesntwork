@@ -7,10 +7,11 @@ import org.apache.spark.SparkContext
 class DoTests extends FunSpec with BeforeAndAfterAll with GivenWhenThen {
 
 	var sc : SparkContext = _
-	val doit = new Doit(){}
+	var doit : Doit = _
 
 	override def beforeAll() {
-	  	sc = new SparkContext("local","test",doit.conf)
+	  	doit = Doit()
+	  	sc = new SparkContext(doit.conf)
 	}
 
 	override def afterAll() {
@@ -20,7 +21,15 @@ class DoTests extends FunSpec with BeforeAndAfterAll with GivenWhenThen {
 
 	describe("Service Tests") {
 		it("Induce failure of test to start") {
+			val n1 = System.currentTimeMillis;
 			doit.fn(sc)
+			println("Time: "+(System.currentTimeMillis - n1)+"ms")
+			val n2 = System.currentTimeMillis;
+			doit.fn(sc)
+			println("Time: "+(System.currentTimeMillis - n2)+"ms")
+			val n3 = System.currentTimeMillis;
+			doit.fn(sc)
+			println("Time: "+(System.currentTimeMillis - n3)+"ms")
 		}
 	}
 }
