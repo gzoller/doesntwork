@@ -9,7 +9,7 @@ resolvers += "Sonatype Public" at "https://oss.sonatype.org/content/groups/publi
 parallelExecution in Test := false
 
 libraryDependencies ++= Seq(
-  "org.apache.spark" %% "spark-core" % "1.0.2",
+  "org.apache.spark" %% "spark-core" % "1.0.2" exclude("com.google.guava", "guava"),
   "org.apache.cassandra" % "cassandra-thrift" % "2.1.0",
   "org.apache.cassandra" % "cassandra-clientutil" % "2.1.0",
   "com.datastax.cassandra" % "cassandra-driver-core" % "2.0.4",

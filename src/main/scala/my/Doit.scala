@@ -4,10 +4,11 @@ import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._
 import org.apache.spark.SparkConf
 //import com.datastax.spark.connector.util.Logging
+import org.apache.spark.Logging
 
 import com.datastax.spark.connector._
 
-trait Doit extends App {
+trait Doit extends App with Logging {
   val conf = new SparkConf(true).setMaster("local[8]").set("spark.cassandra.connection.host", "127.0.0.1")
     .setAppName("Foo")
 
